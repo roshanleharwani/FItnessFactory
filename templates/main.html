@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitnessFactory</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles here */
+        .bg-cover {
+            background-image: url('/static/main.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .bg-gray-translucent {
+            background-color: rgba(0, 0, 0, 0.2); /* Adjust the alpha value as needed for the desired translucency */
+        }
+
+        .bg-white-opaque {
+            background-color: rgba(255, 255, 255, 0.2); /* Adjust the alpha value as needed */
+        }
+
+        .footer-bg {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .stats-card {
+            opacity: 0.5;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .leaderboard {
+            opacity: 0.5;
+            width: 100%; /* Stretching leaderboard to cover the entire width */
+            color: white;
+        }
+
+        .leaderboard th,
+        .leaderboard td {
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .leaderboard th {
+            background-color: #4a5568; /* Tailwind CSS gray-700 */
+        }
+
+        .leaderboard td {
+            background-color: #2d3748; /* Tailwind CSS gray-800 */
+        }
+    </style>
+</head>
+
+<body class="bg-cover flex flex-col items-center justify-center h-screen">
+    <header class="fixed top-0 left-0 w-full text-gray-400 bg-gray-translucent body-font z-10">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+            <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
+                <img src="/static/logo.png" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </img>
+                <span class="ml-3 text-xl">{{name}}</span>
+            </a>
+            <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+            </nav>
+            <a href="/logout"><button class="inline-flex items-center bg-gray-700 text-white border-0 py-1 px-3 focus:outline-none hover:bg-red-600 rounded text-base mt-4 md:mt-0">Logout
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+            </button></a>
+        </div>
+    </header>
+
+    <div class="flex justify-center mb-8">
+        <div class="stats-card">
+            <h2 class="text-lg font-bold mb-2">HEART COUNT</h2>
+            <p class="text-sm">100</p>
+        </div>
+        <div class="stats-card">
+            <h2 class="text-lg font-bold mb-2">STEP COUNT</h2>
+            <p class="text-sm">5431</p>
+        </div>
+        <div class="stats-card">
+            <h2 class="text-lg font-bold mb-2">MINUTES EXERCISED</h2>
+            <p class="text-sm">60</p>
+        </div>
+        <div class="stats-card">
+            <h2 class="text-lg font-bold mb-2">SUCCESS CURVE</h2>
+            <p class="text-sm">High</p>
+        </div>
+    </div>
+
+    <div class="flex flex-col items-center">
+        <h2 class="text-2xl font-bold text-white mb-4">Leaderboard</h2>
+        <div class="leaderboard bg-white rounded-lg shadow-lg overflow-hidden">
+            <table class="w-full">
+                <thead class="bg-gray-900 text-white">
+                    <tr>
+                        <th class="py-3 px-20 text-gray-200">Rank</th>
+                        <th class="py-3 px-20">Name</th>
+                        <th class="py-3 px-20">Success Points</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    <tr>
+                        <td class="py-3 px-20">1</td>
+                        <td class="py-3 px-20">John Doe</td>
+                        <td class="py-3 px-20">500</td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 px-20">2</td>
+                        <td class="py-3 px-20">Jane Smith</td>
+                        <td class="py-3 px-20">450</td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer class="fixed  text-gray-400 bg-gray-900 body-font bg-gray-translucent body-font z-10 footer-bg">
+        <div class="container px-2 py-8 mx-auto flex items-center sm:flex-row flex-col">
+            <a class="flex title-font font-medium items-center md:justify-start justify-center text-white">
+
+                <span class="ml-3 text-xl">FitnessFactory</span>
+            </a>
+            <p class="text-sm text-gray-400 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4">© 2024
+            </p>
+            <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+                <a class="text-gray-400">
+                    <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                    </svg>
+                </a>
+                <a class="ml-3 text-gray-400">
+                    <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                        <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                    </svg>
+                </a>
+                <a class="ml-3 text-gray-400">
+                    <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                        <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+                    </svg>
+                </a>
+                <a class="ml-3 text-gray-400">
+                    <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
+                        <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+                        <circle cx="4" cy="4" r="2" stroke="none"></circle>
+                    </svg>
+                </a>
+            </span>
+        </div>
+
+    </footer>
+
+</body>
+
+</html>
