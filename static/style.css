@@ -1,0 +1,89 @@
+/* Custom styles here */
+.bg-cover {
+    background-image: url('/static/main.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.bg-gray-translucent {
+    background-color: rgba(0, 0, 0, 0.2); /* Adjust the alpha value as needed for the desired translucency */
+}
+
+.bg-white-opaque {
+    background-color: rgba(255, 255, 255, 0.2); /* Adjust the alpha value as needed */
+}
+
+.footer-bg {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.stats-card {
+    opacity: 0.5;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.leaderboard {
+    opacity: 0.5;
+    width: 100%; /* Stretching leaderboard to cover the entire width */
+    color: white;
+}
+
+.leaderboard th,
+.leaderboard td {
+    padding: 1rem;
+    text-align: center;
+}
+
+.leaderboard th {
+    background-color: #4a5568; /* Tailwind CSS gray-700 */
+}
+
+.leaderboard td {
+    background-color: #2d3748; /* Tailwind CSS gray-800 */
+}
+
+.graph-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.graph {
+    width: 45%;
+    height: 300px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.banner-container {
+    margin-top: 20px;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.banner {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    margin-right: 20px;
+    animation: scroll 15s linear infinite;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}

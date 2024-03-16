@@ -12,6 +12,22 @@ with open("config.json") as file:
     data = json.load(file)
     params = data["params"]
 
+def step_count():
+    url = "https://v1.nocodeapi.com/kali_user98/fit/lOEQiXwDNbDJnDxw/aggregatesDatasets?dataTypeName=steps_count"
+    params = {}
+    r = requests.get(url = url, params = params)
+    result = r.json()
+    steps_count = [entry['value'] for entry in result['steps_count']]
+    return steps_count
+
+def heart_count():
+    url = "https://v1.nocodeapi.com/kali_user98/fit/lOEQiXwDNbDJnDxw/aggregatesDatasets?dataTypeName=heart_minutes"
+    params = {}
+    r = requests.get(url = url, params = params)
+    result = r.json()
+    heart_count = [entry['value'] for entry in result['heart_minutes']]
+    return heart_count
+
 
 # MongoDB Setup
 uri = "mongodb+srv://roshanleharwani:kYBdCTFNi3u6ktif@users.lo1ne1j.mongodb.net/?retryWrites=true&w=majority&appName=Users"
@@ -32,23 +48,34 @@ bcrypt = Bcrypt(app)
 
 @app.route('/')
 def index():
+    if "user" in session:
+        step = step_count()[-1]
+        heart = heart_count()[-1]
+        name = session['name']  # Define 'name' variable if user is logged in
+        return render_template("main.html", name=name, step=step, heart=heart)
     return render_template('index.html')
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if "user" in session:
-        return render_template("main.html",name=name)
+        step = step_count()[-1]
+        heart = heart_count()[-1]
+        name = session['name']  # Define 'name' variable if user is logged in
+        return render_template("main.html", name=name, step=step, heart=heart)
 
     if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
         user = db.users.find_one({"email": email})
         name = user.get('name')
+        session['name'] = name
         if user:
             if bcrypt.check_password_hash(user.get("password"), password):
                 session["user"] = email
                 flash("Success alert! You have Logged in successfully")
-                return render_template("main.html",name=name)
+                step = step_count()[-1]
+                heart = heart_count()[-1]
+                return render_template("main.html", name=name, step=step, heart=heart)
             else:
                 flash("Invalid Credentials !!  ")
                 return redirect(request.url)
@@ -80,7 +107,9 @@ def register():
             )
             flash("Success alert! You have Signed UP successfully ")
             session["user"] = email
-            return render_template("main.html",name=name)
+            step = step_count()[-1]
+            heart = heart_count()[-1]
+            return render_template("main.html",name=name,step=step,heart=heart)
         else:
             flash("All Fields are required")
             return render_template("signup.html")
@@ -106,7 +135,16 @@ def contact():
     else:
         return render_template('index.html')
 
+@app.route('/recommend')
+def recommend():
+    name = session['name']
+    step = step_count()
+    heart = heart_count()
+    return render_template('banner.html',name=name,step=step,heart=heart)
 
+@app.route('/admin')
+def admin():
+    return render_template('admin.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=5000,debug=True)

@@ -82,11 +82,11 @@
     <div class="flex justify-center mb-8">
         <div class="stats-card">
             <h2 class="text-lg font-bold mb-2">HEART COUNT</h2>
-            <p class="text-sm">100</p>
+            <p class="text-sm">{{heart}}</p>
         </div>
         <div class="stats-card">
             <h2 class="text-lg font-bold mb-2">STEP COUNT</h2>
-            <p class="text-sm">5431</p>
+            <p class="text-sm">{{step}}</p>
         </div>
         <div class="stats-card">
             <h2 class="text-lg font-bold mb-2">MINUTES EXERCISED</h2>
@@ -120,12 +120,14 @@
                         <td class="py-3 px-20">Jane Smith</td>
                         <td class="py-3 px-20">450</td>
                     </tr>
-                    <!-- Add more rows as needed -->
                 </tbody>
             </table>
         </div>
     </div>
-
+    <div class="container mx-auto mt-8 text-center">
+        <a href="/recommend"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Get Recommendations</button></a>
+    </div>
+    
     <footer class="fixed  text-gray-400 bg-gray-900 body-font bg-gray-translucent body-font z-10 footer-bg">
         <div class="container px-2 py-8 mx-auto flex items-center sm:flex-row flex-col">
             <a class="flex title-font font-medium items-center md:justify-start justify-center text-white">
@@ -158,6 +160,7 @@
                 </a>
             </span>
         </div>
+        
 
     </footer>
 
